@@ -28,7 +28,12 @@ class Search extends Component {
   }
   render() {   
     return (
-        <div className="container pt-1">    
+        <div className="container pt-1"> 
+          <div className="form-group row">
+            <div className="col-2"> </div>
+            <div className="col-3"> <h5>Search For Trains Here </h5> </div>
+          </div>
+        
           <div className="form-group row">
             <div className="col-2"> </div>
             <label for="example-text-input" className="col-1 col-form-label">From</label>
