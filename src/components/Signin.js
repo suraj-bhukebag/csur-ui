@@ -16,7 +16,7 @@ class Signin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      "email":"",
+      "semail":"",
       "password":""
     };
 
@@ -42,7 +42,7 @@ class Signin extends React.Component {
         firebaseAuth().onAuthStateChanged(user => {
             if (user) {
                 console.log("User signed in: ", JSON.stringify(user));
-
+                localStorage.setItem("email", user.email);
                 localStorage.removeItem(firebaseAuthKey);
 
                 // here you could authenticate with you web server to get the
@@ -50,7 +50,7 @@ class Signin extends React.Component {
                 // authenticate with firebase every time a user logs in
                 localStorage.setItem(appTokenKey, user.uid);
 
-                this.props.signin(user);
+                this.props.signin(this.state);
 
             }
         });
@@ -123,7 +123,7 @@ class Signin extends React.Component {
                   <Label for="email">Email</Label>
                   <Input type="email" name="semail" id="semail" placeholder="Email" onChange={(event) => {
                                     this.setState({
-                                        email: event.target.value
+                                        semail: event.target.value
                                     });
                                 }} />
                 </FormGroup>
@@ -135,7 +135,7 @@ class Signin extends React.Component {
                                     });
                                 }} />
                 </FormGroup>
-                <button className="btn btn-primary" onClick={() => {this.props.signin(this.state)}}>Signin</button>
+                <button type="button" className="btn btn-primary" onClick={() => {this.props.signin(this.state)}}>Signin</button>
             </Form>
         
       </div>

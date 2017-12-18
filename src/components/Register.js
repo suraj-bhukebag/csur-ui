@@ -8,8 +8,8 @@ class Signup extends React.Component {
   constructor() {
     super();
     this.state = {
-      "fname":"",
-      "lname":"",
+      "firstname":"",
+      "lastname":"",
       "email":"",
       "password":""
     }
@@ -21,7 +21,7 @@ class Signup extends React.Component {
       <div className="pt-5">
       <Form>
         <h5>New User Registration</h5><br />
-        {this.props.expression ? <Alert color="success">{this.props.expression}</Alert> : ''}
+        {this.props.msg ? <Alert color="success">{this.props.msg}</Alert> : ''}
       
         <FormGroup row>
           <Label for="exampleEmail" sm={2}>Email</Label>
@@ -48,7 +48,7 @@ class Signup extends React.Component {
           <Col sm={10}>
             <Input type="text" name="fname" id="fname" placeholder="First Name" onChange={(event) => {
                                     this.setState({
-                                        fname: event.target.value
+                                        firstname: event.target.value
                                     });
                                 }}  />
           </Col>
@@ -58,12 +58,12 @@ class Signup extends React.Component {
           <Col sm={10}>
             <Input type="text" name="lname" id="lname" placeholder="Last Name" onChange={(event) => {
                                     this.setState({
-                                        lname: event.target.value
+                                        lastname: event.target.value
                                     });
                                 }} />
           </Col>
         </FormGroup>
-        <button className="btn btn-primary" onClick={() => {this.props.signup(this.state)}}>Register</button>
+        <button type="button" className="btn btn-primary" onClick={() => {this.props.signup(this.state)}}>Register</button>
       </Form>
       </div>
     );
@@ -77,7 +77,9 @@ function mapDispatchToProps(dispatch) {
 }
 
 function mapStateToProps(state) {
-  return {};
+  let msg = state.csur.msg;
+  state.csur.msg = "";
+  return {msg};
   
 }
 

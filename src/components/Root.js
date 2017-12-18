@@ -3,6 +3,7 @@ import {withRouter, Route, Link, BrowserRouter, Switch} from 'react-router-dom';
 import Home from './Home';
 import Admin from './Admin';
 import SearchHome from './SearchHome';
+import BookingHome from './BookingHome';
 import UserHome from './UserHome';
 
 class Root extends Component {
@@ -18,6 +19,7 @@ class Root extends Component {
 			    <Route exact path='/' component={SearchHome} />	
 			    <Route exact path='/logout' component={SearchHome} />			    	    
 			    <Route path='/search' component={SearchHome} />
+			    <Route path='/booked' component={BookingHome} />
 			    <Route path='/users' component={UserHome} />
 			</Switch>
 			  

@@ -12,10 +12,12 @@ class Search extends Component {
     this.state = {
      "from":"",
      "to":"",
-     "depTime":"",
+     "depTime":"06:00:00",
      "isExact":"",
-     "paxs":"",
-     "conn":""
+     "paxs":"1",
+     "conn":"0",
+     "depDate":"",
+     "trainType":"A"
 
     };
     this.handleSearchTrain = this.handleSearchTrain.bind(this);
@@ -38,33 +40,41 @@ class Search extends Component {
             <div className="col-2"> </div>
             <label for="example-text-input" className="col-1 col-form-label">From</label>
             <div className="col-3">
-              <input type="text" list="stations" className="form-control" id="inputPassword4" placeholder="From" 
-                   onChange={(event) => {
+             <select class="custom-select" onChange={(event) => {
                                     this.setState({
                                         from: event.target.value
-                                    }); }}  />
-               <datalist id="stations">
-                        {
-                          this.props.stations.map((station)=>{
-                            return (<div><option value={station}></option></div>)
-                          })
-                        }
-              </datalist>  
+                                    }); }} >
+                  <option selected>Choose From Station</option>
+                  <option value="1">A</option>
+                  <option value="2">B</option>
+                  <option value="3">C</option>
+                  <option value="4">D</option>
+                  <option value="5">E</option>
+                  <option value="6">F</option>
+                  <option value="7">G</option>
+                  <option value="8">H</option>
+                  <option value="9">I</option>
+                </select>
+             
             </div>
             <label for="example-search-input" className="col-1 col-form-label">To</label>
             <div className="col-3">
-               <input type="text" list="stations" className="form-control" id="inputPassword4" placeholder="To" 
-                   onChange={(event) => {
+             <select class="custom-select" onChange={(event) => {
                                     this.setState({
                                         to: event.target.value
-                                    }); }}  />
-               <datalist id="stations">
-                        {
-                          this.props.stations.map((station)=>{
-                            return (<div><option value={station}></option></div>)
-                          })
-                        }
-              </datalist>  
+                                    }); }} >
+                  <option selected>Choose To Station</option>
+                  <option value="1">A</option>
+                  <option value="2">B</option>
+                  <option value="3">C</option>
+                  <option value="4">D</option>
+                  <option value="5">E</option>
+                  <option value="6">F</option>
+                  <option value="7">G</option>
+                  <option value="8">H</option>
+                  <option value="9">I</option>
+                </select>
+  
             </div>
             <div className="col-2"> </div>
           </div>
@@ -73,7 +83,7 @@ class Search extends Component {
             <div className="col-2"> </div>
             <label for="example-text-input" className="col-1 col-form-label">Dep Time</label>
             <div className="col-3">
-              <input type="text" className="form-control" id="inputPassword4" placeholder="Departure Time" 
+              <input type="time" className="form-control" defaultValue="13:45:00" id="inputPassword4" placeholder="Departure Time" 
                    onChange={(event) => {
                                     this.setState({
                                         depTime: event.target.value
@@ -90,6 +100,30 @@ class Search extends Component {
                 Is Exact
               </label>
             </div>
+            
+            <div className="col-2"> </div>
+          </div>
+
+           <div className="form-group row">
+            <div className="col-2"> </div>
+           <label for="example-search-input" className="col-1 col-form-label">Dep Date</label>
+            <div className="col-3">
+                 <input className="form-control" type="date" id="example-date-input" onChange={(event) => {
+                                    this.setState({
+                                        depDate: event.target.value
+                                    }); }} />
+            </div>
+             <label for="example-text-input" className="col-1 col-form-label">Train Type</label>
+            <div className="col-3">
+              <select class="custom-select" onChange={(event) => {
+                                    this.setState({
+                                        trainType: event.target.value
+                                    }); }} >
+                  <option value="A">Any</option>
+                  <option value="R">Regular</option>
+                  <option value="E">Express</option>
+                </select>
+            </div>
             <div className="col-2"> </div>
           </div>
 
@@ -103,9 +137,9 @@ class Search extends Component {
                                     }); }} >
                   <option value="1">1</option>
                   <option value="2">2</option>
-                  <option value="2">3</option>
-                  <option value="2">4</option>
-                  <option value="2">5</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
                 </select>
             </div>
             <label for="example-search-input" className="col-1 col-form-label">Connections</label>
@@ -137,10 +171,7 @@ class Search extends Component {
 }
 
 const mapStateToProps = (state) => {
-  let stations = ['A','B','C','D','E','F','G'];
-  let paxs = [1,2,3,4,5];
-  let con = ["Any","1","2"];
-  return {stations, paxs, con};
+  return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

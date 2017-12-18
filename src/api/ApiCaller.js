@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-let API_URL = "localhost:8080/"
+let API_URL = "http://localhost:8080"
 
 export default function callApi(endpoint, method = 'get', body) {
   let reqBody;
