@@ -8,6 +8,9 @@ export const USER_SIGNUP = "USER_SIGNUP";
 export const USER_TICKETS = "USER_TICKETS";
 export const ADMIN_DAILYRES = "ADMIN_DAILYRES";
 export const ADMIN_DAILYSEARCH = "ADMIN_DAILYSEARCH";
+export const SYSTEM_RESET = "SYSTEM_RESET";
+export const TRAIN_RES_RATE = "TRAIN_RES_RATE";
+export const SEARCH_DATA = "SEARCH_DATA";
 
 export function searchTrains(data) {
 
@@ -148,15 +151,75 @@ export function handleTicketCancel(data, user) {
 }
 
 export function dailyReservation(data) {
+	let from = new Date(data.from).getTime();
+	let to = new Date(data.to).getTime();
 
+	return (dispatch) => {
+	    return callApi("dailyReservationReport?from="+from+"&to="+to, 'get').then(res => dispatch(dailyReservationResponse(res)));
+	  };
+
+	
+}
+
+function dailyReservationResponse(res) {
 	return {
-		type: ADMIN_DAILYRES
+		type: ADMIN_DAILYRES,
+		report: res.dailyReservationRates
 	}
 }
 
 
 export function handleDailySearch(data) {
+	let date = new Date(data.date).getTime();
+	
+	return (dispatch) => {
+	    return callApi("dailySearchCountReport?date="+date, 'get').then(res => dispatch(handleDailySearchOne(date, res)));
+	  };
+}
+
+function handleDailySearchOne(date, countRes) {
+	return (dispatch) => {
+	    return callApi("dailySearchPercentageReport?date="+date, 'get').then(res => dispatch(handleDailySearchTwo(date, countRes, res)));
+	  };
+}
+
+function handleDailySearchTwo(date, countRes, connRes) {
+		return (dispatch) => {
+			    return callApi("dailySearchLatencyReport?date="+date, 'get').then(res => dispatch(handleDailySearchResult(countRes, connRes, res)));
+			  };
+}
+
+function handleDailySearchResult(countRes, connRes, res) {
 	return {
-		type: ADMIN_DAILYSEARCH
+		type: SEARCH_DATA,
+		searchCounts: countRes[0],
+		connectionCount: connRes.dailySearchPercentages,
+		latency: res.dailySearchLatencies
+	}
+
+}
+
+export function clearData(data) {
+	return (dispatch) => {
+	    return callApi("clear", 'post', data).then(res => dispatch(resetResponse(res)));
+	  };
+}
+ function resetResponse(res) {
+	return {
+		type: SYSTEM_RESET,
+		msg: res.msg
+	}
+}
+
+export function trainReservationRate() {
+	return (dispatch) => {
+	    return callApi("trainReservationReport", 'get').then(res => dispatch(trainReservationRateResponse(res)));
+	  };
+}
+
+function trainReservationRateResponse(res) {
+	return {
+		type: TRAIN_RES_RATE,
+		report: res.trainReservationRate
 	}
 }

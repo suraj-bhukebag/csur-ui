@@ -1,4 +1,4 @@
-import {SEARCH_TRAINS, USER_SIGNIN, USER_SIGNOUT, TICKET_BOOK, USER_SIGNUP, USER_TICKETS, ADMIN_DAILYRES, ADMIN_DAILYSEARCH} from "../actions";
+import {SEARCH_TRAINS, USER_SIGNIN, USER_SIGNOUT, TICKET_BOOK, USER_SIGNUP, USER_TICKETS, ADMIN_DAILYRES, ADMIN_DAILYSEARCH, SYSTEM_RESET, TRAIN_RES_RATE, SEARCH_DATA} from "../actions";
 
 const initialState = {
        
@@ -63,12 +63,26 @@ const csur = (state = initialState, action) => {
 
 		case ADMIN_DAILYRES : return {
 										...state,
-										"admin_dailyres": [ {"date": "01-18-1970", "Reservation Rate": 75 },
-        													{"date": "01-19-1970", "Reservation Rate": 55 },
-        													{"date": "01-20-1970", "Reservation Rate": 35 }]
+										"report2": action.report
         													
 										}
 
+		case SYSTEM_RESET: return {
+									...state,
+									"systemReset": action.msg
+									}
+
+		case TRAIN_RES_RATE: return {
+										...state,
+										"report1":action.report
+									}
+
+		case SEARCH_DATA: return {
+									...state,
+									"searchCounts": action.searchCounts,
+									"connectionCount": action.connectionCount,
+									"latency": action.latency
+									}
 
 		case USER_SIGNOUT : return {"isLoggedIn":false}
 

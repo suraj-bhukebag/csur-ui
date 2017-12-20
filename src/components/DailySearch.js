@@ -49,26 +49,37 @@ class DailySearch extends Component {
                               </div>
                           </div>
                         </div>
-                      {this.props.report !== undefined && this.props.report.length > 0 ? 
+                      {this.props.sc !== undefined ?
+                         <div className="row">
+
+                        <div className="col-6">
+                          <h5>Search Counts : {this.props.sc} </h5>
+                        </div>
+
+                        </div>
+                      : ''}
                         <div>
                          <br /><br /><br />
                         <div className="row">
+                        {this.props.report !== undefined && this.props.report.length > 0 ? 
+                            <div className="col-6">
+                         
+                            <h5>Daily Search Count Based on Connections</h5>  
+                            <GenericBarGraph title="Daily Search Chart" field="total" dataKey="date" dataVal="No of Search Requests" fieldName="Car Revenue" xLabel="Dates" yLabel="No of Search Requests" data={this.props.report1} />   
 
-                        <div className="col-6">
-                     
-                        <h5>Daily Search Count Based on Connections</h5>  
-                        <GenericBarGraph title="Daily Search Chart" field="total" dataKey="date" dataVal="No of Search Requests" fieldName="Car Revenue" xLabel="Dates" yLabel="No of Search Requests" data={this.props.report} />   
-
-                        </div>                      
+                            </div>  
+                         :''}   
+                         {this.props.report !== undefined && this.props.report.length > 0 ?                  
                         <div className="col-6">
                         <h5>Server Latency for Search Types</h5>  
-                        <GenericBarGraph title="Daily Search Chart" field="total" dataKey="date" dataVal="No of Search Requests" fieldName="Car Revenue" xLabel="Dates" yLabel="No of Search Requests" data={this.props.report} />   
-
+                        <GenericBarGraph title="Daily Search Chart" field="total" dataKey="date" dataVal="No of Search Requests" fieldName="Car Revenue" xLabel="Dates" yLabel="No of Search Requests" data={this.props.report2} />   
+                          
                         </div>
+                        :''}
                       </div>
                       </div>
                         
-                    :''}
+                   
 
                   </div>
    
@@ -85,8 +96,10 @@ class DailySearch extends Component {
 }
 
 const mapStateToProps = (state) => {
- let report = state.csur.dailySearchCounts;
-  return {report};
+ let report1 = state.csur.connectionCount;
+ let report2 = state.csur.latency;
+ let sc = state.csur.searchCounts;
+  return {report1, report2, sc};
 };
 
 const mapDispatchToProps = (dispatch) => {

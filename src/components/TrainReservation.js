@@ -20,7 +20,44 @@ class TrainReservation extends Component {
                 <div className="row" >
                   <LeftNavigation />
                   
-                  <div className="col-md-9 pt-5"> <br/><br/><br/>TrainReservation </div>
+                  <div className="col-md-9 pt-5"> <br/><br/><h5>Train Reservation Rate Report</h5><br/>
+                      <table className="table table-striped">
+                        <thead className="thead">
+                          <tr>
+                            <th>#</th>
+                            <th>Train Number</th>
+                            <th>Date</th>
+                            <th>Reservation Rate</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          
+
+                                  {this.props.report !== undefined ? 
+                                       
+                                  this.props.report.map((report, i) => {
+                                  
+                                    return(
+                                            
+                                          <tr>
+                                            <th scope="row">{i+1}</th>
+                                            <td>{report.train}</td>
+                                            <td>{report.date}</td>
+                                            <td>{report.reservationRate}</td>
+                                          </tr>
+                                          
+                                      );
+                                  
+                                  })
+                                
+
+                                 : ''} 
+                         
+                        </tbody>
+                      </table>
+
+
+                   </div>
                 </div>
               </div>
           
@@ -32,8 +69,9 @@ class TrainReservation extends Component {
 }
 
 const mapStateToProps = (state) => {
+  let report = state.csur.report1;
  
-  return {};
+  return {report};
 };
 
 const mapDispatchToProps = (dispatch) => {

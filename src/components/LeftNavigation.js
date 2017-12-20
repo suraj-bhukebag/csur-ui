@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { connect } from 'react-redux';
+import {trainReservationRate} from "../actions";
 
 class LeftNavigation extends Component {
 
@@ -15,7 +16,7 @@ var linkStyle = {'text-decoration': 'none', 'color': 'grey'};
               &nbsp;
             </li>
             <li className="nav-item">
-              <Link style={linkStyle} to="/adminTrainReservation">&nbsp;&nbsp;&nbsp;Train Reservation Rate</Link>
+              <Link style={linkStyle} to="/adminTrainReservation" onClick={() => {this.props.trainReservationRate()}}>&nbsp;&nbsp;&nbsp;Train Reservation Rate</Link>
             </li>
             <li className="nav-item">
               &nbsp;
@@ -33,13 +34,13 @@ var linkStyle = {'text-decoration': 'none', 'color': 'grey'};
               &nbsp;
             </li>
             <li className="nav-item">
-              <Link style={linkStyle} to="/adminCapacity">&nbsp;&nbsp;&nbsp;Update Capacity</Link>
+              <Link style={linkStyle} to="/adminReset">&nbsp;&nbsp;&nbsp;Reset System</Link>
             </li>
             <li className="nav-item">
               &nbsp;
             </li>
             <li className="nav-item">
-              <Link style={linkStyle} to="/adminReset">&nbsp;&nbsp;&nbsp;Reset System</Link>
+              &nbsp;
             </li>
             <li className="nav-item">
               &nbsp;
@@ -100,7 +101,8 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return {  };
+  return { 
+  trainReservationRate : (data) => dispatch(trainReservationRate()) };
 };
 
 LeftNavigation.propTypes = {

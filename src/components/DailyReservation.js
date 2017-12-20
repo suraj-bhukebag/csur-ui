@@ -32,7 +32,7 @@ class DailyReservation extends Component {
                 <div className="row" >
                   <LeftNavigation />
                   
-                  <div className="col-md-9 pt-5"> <br/><br/>DailyReservation : Select Data Range <br/> <br/> 
+                  <div className="col-md-9 pt-5"> <br/><br/><h5>DailyReservation : Select Data Range </h5><br/> <br/> 
                        <div className="form-group row">
                      
                          <label for="example-search-input" className="col-1 col-form-label">From</label>
@@ -56,11 +56,10 @@ class DailyReservation extends Component {
                               </div>
                           </div>
                         </div>
-                                       {this.props.report !== undefined && this.props.report.length > 0 ? 
-                        <div className="col-5">
-                     
-
-                        <GenericBarGraph title="Daily Reservation Chart" field="total" dataKey="date" dataVal="Reservation Rate" fieldName="Car Revenue" xLabel="Dates" yLabel="Reservation Rate in %" data={this.props.report} />   </div>
+                        {this.props.report !== undefined && this.props.report.length > 0 ? 
+                        <div className="col-5">                 
+                        <br/><br/>
+                        <GenericBarGraph title="Daily Reservation Chart" field="total" dataKey="date" dataVal="reservationRate" fieldName="Car Revenue" xLabel="Dates" yLabel="Reservation Rate in %" data={this.props.report} />   </div>
                         
                     :''}
 
@@ -79,7 +78,7 @@ class DailyReservation extends Component {
 }
 
 const mapStateToProps = (state) => {
-  let report = state.csur.admin_dailyres;
+  let report = state.csur.report2;
   return {report};
 };
 
