@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import { bindActionCreators } from 'redux';
 import {withRouter} from 'react-router-dom';
-import {userSignout} from "../actions";
+import {userSignout, userTickets} from "../actions";
 const appTokenKey = "appToken";
 
 class Header extends Component { 
@@ -19,14 +19,14 @@ class Header extends Component {
             <ul className="navbar-nav mr-auto">
               
               <li className="nav-item">
-                <Link className="nav-link" to="search">&nbsp;</Link>
+                <Link className="nav-link" to="search">Search</Link>
               </li>
              
             </ul>
             
               {this.props.isLoggedIn !== undefined && this.props.isLoggedIn === true ? 
                 <span className="navbar-text">
-                  <Link  style={linkStyle} to="tickets">My Tickets</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <Link  style={linkStyle} to="tickets" onClick={() => {this.props.userTickets(this.props.userId)}}>My Tickets</Link>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                   <Link style={linkStyle} to="logout" onClick={() => {this.props.userSignout()}} >Logout</Link>
                 </span>
                 :
@@ -44,12 +44,18 @@ class Header extends Component {
 
 const mapStateToProps = (state) => {
   let isLoggedIn = state.csur.isLoggedIn;
-  return {isLoggedIn};
+  let userId = "";
+  if(isLoggedIn) {
+    userId = state.csur.user.id;
+  }
+  
+  return {isLoggedIn, userId};
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
     userSignout : (data) => dispatch(userSignout(data)),
+    userTickets : (data) => dispatch(userTickets(data)),
   };
 };
 

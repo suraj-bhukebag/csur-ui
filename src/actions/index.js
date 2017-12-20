@@ -5,6 +5,9 @@ export const USER_SIGNIN = "USER_SIGNIN";
 export const USER_SIGNOUT = "USER_SIGNOUT";
 export const TICKET_BOOK = "TICKET_BOOK";
 export const USER_SIGNUP = "USER_SIGNUP";
+export const USER_TICKETS = "USER_TICKETS";
+export const ADMIN_DAILYRES = "ADMIN_DAILYRES";
+export const ADMIN_DAILYSEARCH = "ADMIN_DAILYSEARCH";
 
 export function searchTrains(data) {
 
@@ -33,7 +36,8 @@ function searchResponse(res) {
 
 	return {
 		type: SEARCH_TRAINS,
-		trains: res.searchResults
+		trains: res.searchResults,
+		msg: res.msg
 	}
 }
 
@@ -47,7 +51,8 @@ export function bookTicket(data) {
 function bookingResponse(res) {
 	return {
 		type: TICKET_BOOK,
-		ticket: res.ticket
+		ticket: res.ticket,
+		msg: res.msg
 	}
 }
 
@@ -113,5 +118,45 @@ function signUpResponse(res) {
 	return {
 		type: USER_SIGNUP,
 		msg:res.msg
+	}
+}
+
+export function userTickets(data, msg) {
+	return (dispatch) => {
+	    return callApi(data+"/booked", 'get').then(res => dispatch(userTicketsResponse(res, msg)));
+	  };
+}
+
+function userTicketsResponse(res, msg) {
+	return {
+		type: USER_TICKETS,
+		tickets:res.tickets,
+		msg: msg
+	}
+}
+
+export function handleTicketCancel(data, user) {
+
+	let date = new Date();
+	let dd = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
+
+	let d = new Date(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate());
+	console.log(dd);
+	return (dispatch) => {
+	    return callApi("cancel/"+data+"/"+d.getTime(), 'post', data).then(res => dispatch(userTickets(user, res.msg)));
+	  };
+}
+
+export function dailyReservation(data) {
+
+	return {
+		type: ADMIN_DAILYRES
+	}
+}
+
+
+export function handleDailySearch(data) {
+	return {
+		type: ADMIN_DAILYSEARCH
 	}
 }

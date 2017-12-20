@@ -11,18 +11,14 @@ class SearchResults extends Component {
   render() {   
     return (
         <div className="container pt-1">  
-        {this.props.trains !== undefined && this.props.trains.length > 0 ? 
-          <div className="form-group row">
-              <div className="col-1"> </div>
-              <div className="col-8"><h5>Search Results </h5> </div>
-              <div className="col-1"><button type="button" className="btn btn-warning">Clear Results</button> </div>
-          </div>
-        :
-        <div className="form-group row">
-              <div className="col-1"> </div>
-              <div className="col-8"><h5>No Trains Found</h5> </div>
+        {this.props.msg !== undefined ? 
+         <div className="form-group row">
+              <div className="col-2"> </div>
+              <div className="col-8"><div className="alert alert-warning" role="alert">{this.props.msg}</div> </div>
               
           </div>
+        :''
+        
         }
         {this.props.trains !== undefined ? 
                
@@ -73,7 +69,9 @@ class SearchResults extends Component {
 
 const mapStateToProps = (state) => {
   let user = state.csur.user;
-  return {user};
+  let msg = state.csur.searchMsg;
+  state.csur.searchMsg = "";
+  return {user, msg};
 };
 
 const mapDispatchToProps = (dispatch) => {

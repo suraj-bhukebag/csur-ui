@@ -26,6 +26,30 @@
   margin-top: 1px;
 }
 
+
+.headerMargin {
+  margin-top: 70px;
+  min-height: 100%;
+}
+
+.headerBrand {
+    padding-top: 10px;
+}
+
+.centre {
+  text-align: center;
+}
+
+#whiteBackground {
+  background: #fbf6f6;
+  margin-left: -13px;
+margin-top: -7px;
+}
+
+#ccColor {
+  background: #cccccc;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

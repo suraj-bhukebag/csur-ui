@@ -13,13 +13,18 @@ class BookingHome extends Component {
         <div>
           <Header /> 
           <br />
-          <div className="container pt-5">           
+          <div className="container pt-5">  
+          {
+            this.props.msg !== undefined && this.props.msg !== "" ?
+            <div className="alert alert-success" role="alert">
+                <strong>{this.props.msg}</strong>
+              </div>
+              :''
+          }         
             {
               this.props.ticket !== undefined ? 
               <div>
-              <div className="alert alert-success" role="alert">
-                <strong>Booking Successfully Done. An Email has been sent to your registered email.</strong>
-              </div>
+              
               <br/>
               <div className="form-group row">
                
@@ -33,8 +38,8 @@ class BookingHome extends Component {
                             <div className="col-10"> 
                               <h4 className="card-title">Train Type : {this.props.ticket.triptype}</h4>
                               <p className="card-text">Train Information</p>
-                              <p>Travelling Date : {this.props.ticket.travellingdate}</p>
-                              <p>Booking Date : {this.props.ticket.bookingDate}</p>
+                              <p>Travelling Date : {new Date(this.props.ticket.travellingdate).toISOString()}</p>
+                              <p>Booking Date : {new Date(this.props.ticket.bookingDate).toISOString()}</p>
                               <p>Price : {this.props.ticket.totalprice}</p>
                             </div>                            
                           </div>                        
@@ -44,9 +49,7 @@ class BookingHome extends Component {
              </div>
              </div>
               :
-              <div className="alert alert-danger" role="alert">
-                <strong>Oh snap!</strong> Booking COuld not happen. Please try again.
-              </div>
+              ''
             }        
           </div>
         </div>
@@ -56,7 +59,9 @@ class BookingHome extends Component {
 
 const mapStateToProps = (state) => {
   let ticket = state.csur.ticket;
-  return {ticket};
+  let msg = state.csur.msg;
+  state.csur.msg = "";
+  return {ticket, msg};
 };
 
 const mapDispatchToProps = (dispatch) => {

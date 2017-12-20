@@ -1,0 +1,25 @@
+/* Admin styles */
+.center{
+
+}
+
+.headerMargin {
+	margin-top: 70px;
+	min-height: 100%;
+}
+
+.headerBrand {
+    padding-top: 10px;
+}
+
+.centre {
+	text-align: center;
+}
+
+#whiteBackground {
+	background: white;
+}
+
+#ccColor {
+	background: #cccccc;
+}
