@@ -64,7 +64,7 @@ class Booking extends React.Component {
           td.trainId = this.props.train.connections[i].train.id;
           td.from = this.props.train.connections[i].from;
           td.to = this.props.train.connections[i].to;
-          td.depTime = this.props.train.connections[i].depTime;
+          td.deptTime = this.props.train.connections[i].depTime;
           td.arrivalTime = this.props.train.connections[i].arvTime;
           td.sequenceNumber = this.props.train.connections[i].sequenceNumber;
           ticketDetails.push(td);
