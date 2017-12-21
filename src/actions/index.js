@@ -28,13 +28,13 @@ export function searchTrains(data) {
 	let date1 = new Date();
 
 	let d = new Date(date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate());
-	let today = d.getTime();
+	let today = d.getTime().toString();
 	console.log(data.isExact)
 	if(data.isExact === 'on') {
 		isExact = true;
 	}
 
-	let queryParam = "?from="+from+"&to="+to+"&noOfPassengers="+noOfPassengers+"&departureTime="+depTime+"&depDate="+date+"&trainType="+trainType+"&isExact="+isExact+"&noOfConnections="+noOfConnections+"?today="+today;
+	let queryParam = "?from="+from+"&to="+to+"&noOfPassengers="+noOfPassengers+"&departureTime="+depTime+"&depDate="+date+"&trainType="+trainType+"&isExact="+isExact+"&noOfConnections="+noOfConnections+"&today="+today;
 	let url = "search"+queryParam;
 	console.log(url)
 	return (dispatch) => {
