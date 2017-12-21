@@ -15,14 +15,14 @@ class BookingHome extends Component {
           <br />
           <div className="container pt-5">  
           {
-            this.props.msg !== undefined && this.props.msg !== "" ?
+            (this.props.msg !== undefined && this.props.msg !== "") || this.props.ticket === null ?
             <div className="alert alert-success" role="alert">
                 <strong>{this.props.msg}</strong>
               </div>
               :''
           }         
             {
-              this.props.ticket !== undefined ? 
+              this.props.ticket !== undefined && this.props.ticket !== null ? 
               <div>
               
               <br/>
@@ -38,8 +38,7 @@ class BookingHome extends Component {
                             <div className="col-10"> 
                               <h4 className="card-title">Train Type : {this.props.ticket.triptype}</h4>
                               <p className="card-text">Train Information</p>
-                              <p>Travelling Date : {new Date(this.props.ticket.travellingdate).toISOString()}</p>
-                              <p>Booking Date : {new Date(this.props.ticket.bookingDate).toISOString()}</p>
+                              <p>Travelling Date : {new Date(this.props.ticket.travellingdate).toISOString()}</p>                             
                               <p>Price : {this.props.ticket.totalprice}</p>
                             </div>                            
                           </div>                        
@@ -61,6 +60,7 @@ const mapStateToProps = (state) => {
   let ticket = state.csur.ticket;
   let msg = state.csur.msg;
   state.csur.msg = "";
+  console.log("dddd ", ticket)
   return {ticket, msg};
 };
 

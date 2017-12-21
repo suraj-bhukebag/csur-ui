@@ -59,7 +59,7 @@ class TicketsHome extends Component {
                                       <p className="card-text">Train Information</p>
                                       <p>Number of Passengers : {ticket.numberofPassenger}</p>
                                       <p>Travelling Date : {new Date(Number(ticket.travelingDate)).toISOString()} </p>
-                                      <p>Booking Date : {new Date(Number(ticket.bookingDate)).toISOString()} </p>
+                                      
                                       <p>Price : {ticket.price}</p>
                                     </div>
                                     

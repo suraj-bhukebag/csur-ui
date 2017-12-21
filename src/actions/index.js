@@ -14,7 +14,8 @@ export const SEARCH_DATA = "SEARCH_DATA";
 
 export function searchTrains(data) {
 
-	let date = new Date(data.depDate).getTime();
+	console.log("dd ", data.depDate)
+	let date = new Date(data.depDate).getTime()+300000;
 	let from = data.from;
 	let to = data.to;
 	let depTime = data.depTime;
@@ -22,12 +23,19 @@ export function searchTrains(data) {
 	let noOfConnections = data.conn;
 	let trainType = data.trainType;
 	let isExact = false;
+
+
+	let date = new Date();
+	let dd = date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate();
+
+	let d = new Date(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate());
+	let today = d.getTime();
 	console.log(data.isExact)
 	if(data.isExact === 'on') {
 		isExact = true;
 	}
 
-	let queryParam = "?from="+from+"&to="+to+"&noOfPassengers="+noOfPassengers+"&departureTime="+depTime+"&depDate="+date+"&trainType="+trainType+"&isExact="+isExact+"&noOfConnections="+noOfConnections;
+	let queryParam = "?from="+from+"&to="+to+"&noOfPassengers="+noOfPassengers+"&departureTime="+depTime+"&depDate="+date+"&trainType="+trainType+"&isExact="+isExact+"&noOfConnections="+noOfConnections+"?today="+today;
 	let url = "search"+queryParam;
 	console.log(url)
 	return (dispatch) => {
