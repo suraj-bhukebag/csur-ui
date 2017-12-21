@@ -43,27 +43,11 @@ const csur = (state = initialState, action) => {
 										msg: action.msg
 									}
 
-		case ADMIN_DAILYSEARCH : return {
-											...state,
-											"dailySearchCounts": [
-													        {
-													            "date": "01-18-1970",
-													            "No of Search Requests": 115
-													        },
-													        {
-													            "date": "01-19-1970",
-													            "No of Search Requests": 76
-													        },
-													         {
-													            "date": "01-20-1970",
-													            "No of Search Requests": 42
-													        }
-													    ]
-										}
+		
 
 		case ADMIN_DAILYRES : return {
 										...state,
-										"report2": action.report
+										"report6": action.report
         													
 										}
 

@@ -154,7 +154,7 @@ class Search extends Component {
                                     this.setState({
                                         trainType: event.target.value
                                     }); }} >
-                  <option value="A">Any</option>
+                  <option value="R">Any</option>
                   <option value="R">Regular</option>
                   <option value="E">Express</option>
                 </select>

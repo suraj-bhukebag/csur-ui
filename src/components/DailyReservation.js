@@ -78,7 +78,7 @@ class DailyReservation extends Component {
 }
 
 const mapStateToProps = (state) => {
-  let report = state.csur.report2;
+  let report = state.csur.report6;
   return {report};
 };
 

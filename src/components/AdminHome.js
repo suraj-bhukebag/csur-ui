@@ -20,7 +20,7 @@ class AdminHome extends Component {
                 <div className="row" >
                   <LeftNavigation />
                   
-                  <div className="col-md-9 pt-5"> <br/><br/><br/>Ssssss </div>
+                  <div className="col-md-9 pt-5"> <br/><br/><br/> </div>
                 </div>
               </div>
           

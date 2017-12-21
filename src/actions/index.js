@@ -33,7 +33,7 @@ export function searchTrains(data) {
 	if(data.isExact === 'on') {
 		isExact = true;
 	}
-
+		//isExact = false;
 	let queryParam = "?from="+from+"&to="+to+"&noOfPassengers="+noOfPassengers+"&departureTime="+depTime+"&depDate="+date+"&trainType="+trainType+"&isExact="+isExact+"&noOfConnections="+noOfConnections+"&today="+today;
 	let url = "search"+queryParam;
 	console.log(url)
@@ -199,7 +199,7 @@ function handleDailySearchTwo(date, countRes, connRes) {
 function handleDailySearchResult(countRes, connRes, res) {
 	return {
 		type: SEARCH_DATA,
-		searchCounts: countRes[0],
+		searchCounts: countRes.dailySearchCounts,
 		connectionCount: connRes.dailySearchPercentages,
 		latency: res.dailySearchLatencies
 	}

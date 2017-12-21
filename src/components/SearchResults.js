@@ -39,7 +39,7 @@ class SearchResults extends Component {
                             <div className="col-10"> 
                               <h4 className="card-title">Train Type : {train.connections[0].train.type}</h4>
                               <p className="card-text">Train Information</p>
-                              <p>Arr Time : {train.arvTime}</p>
+                              
                               <p>Dep Time : {train.depTime}</p>
                             </div>
                             {this.props.user !== undefined ?

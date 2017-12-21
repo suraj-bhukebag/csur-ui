@@ -53,7 +53,7 @@ class DailySearch extends Component {
                          <div className="row">
 
                         <div className="col-6">
-                          <h5>Search Counts : {this.props.sc} </h5>
+                          <h5>Search Counts : 2 </h5>
                         </div>
 
                         </div>
@@ -61,18 +61,18 @@ class DailySearch extends Component {
                         <div>
                          <br /><br /><br />
                         <div className="row">
-                        {this.props.report !== undefined && this.props.report.length > 0 ? 
+                        {this.props.report1 !== undefined && this.props.report1.length > 0 ? 
                             <div className="col-6">
                          
                             <h5>Daily Search Count Based on Connections</h5>  
-                            <GenericBarGraph title="Daily Search Chart" field="total" dataKey="date" dataVal="No of Search Requests" fieldName="Car Revenue" xLabel="Dates" yLabel="No of Search Requests" data={this.props.report1} />   
+                            <GenericBarGraph title="Daily Search Chart" field="total" dataKey="typeOfSearch" dataVal="connectionPercentage" fieldName="Car Revenue" xLabel="Dates" yLabel="No of Search Requests" data={this.props.report1} />   
 
                             </div>  
                          :''}   
-                         {this.props.report !== undefined && this.props.report.length > 0 ?                  
+                         {this.props.report2 !== undefined && this.props.report2.length > 0 ?                  
                         <div className="col-6">
                         <h5>Server Latency for Search Types</h5>  
-                        <GenericBarGraph title="Daily Search Chart" field="total" dataKey="date" dataVal="No of Search Requests" fieldName="Car Revenue" xLabel="Dates" yLabel="No of Search Requests" data={this.props.report2} />   
+                        <GenericBarGraph title="Daily Search Chart" field="total" dataKey="typeOfSearch" dataVal="latency" fieldName="Car Revenue" xLabel="Dates" yLabel="No of Search Requests" data={this.props.report2} />   
                           
                         </div>
                         :''}
@@ -99,6 +99,8 @@ const mapStateToProps = (state) => {
  let report1 = state.csur.connectionCount;
  let report2 = state.csur.latency;
  let sc = state.csur.searchCounts;
+
+
   return {report1, report2, sc};
 };
 
