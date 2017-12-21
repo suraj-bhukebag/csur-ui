@@ -26,9 +26,8 @@ export function searchTrains(data) {
 
 
 	let date1 = new Date();
-	let dd = date1.getFullYear()+"-"+date1.getMonth()+"-"+date1.getDate();
 
-	let d = new Date(date.getFullYear()+"-"+(date.getMonth()+1)+"-"+date.getDate());
+	let d = new Date(date1.getFullYear()+"-"+(date1.getMonth()+1)+"-"+date1.getDate());
 	let today = d.getTime();
 	console.log(data.isExact)
 	if(data.isExact === 'on') {
